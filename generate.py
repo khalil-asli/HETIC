@@ -17,12 +17,3 @@ with open("input.data.json,"w") as f:
 with open("output.data.json,"w") as f:
           f.write(dumps(TRAIN_OUTPUT))
           
-from sklearn.linear_model import LinearRegression
-
-predictor = LinearRegression(n_jobs=-1)
-predictor.fit(X=TRAIN_INPUT, y=TRAIN_OUTPUT)
-X_TEST = [[10, 20, 30]]
-outcome = predictor.predict(X=X_TEST)
-coefficients = predictor.coef_
-
-print('Outcome : {}\nCoefficients : {}'.format(outcome, coefficients))
