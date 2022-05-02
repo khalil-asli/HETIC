@@ -13,8 +13,8 @@ for i in range(TRAIN_SET_COUNT):
     TRAIN_INPUT.append([a, b, c])
     TRAIN_OUTPUT.append(op)
     
-with open("input.data.json,"w") as f:
+with open("input.data.json","w") as f:
           f.write(dumps(TRAIN_INPUT))
-with open("output.data.json,"w") as f:
+with open("output.data.json","w") as f:
           f.write(dumps(TRAIN_OUTPUT))
           
