@@ -1,4 +1,5 @@
 from random import randint
+import sklearn
 TRAIN_SET_LIMIT = 1000
 TRAIN_SET_COUNT = 100
 
