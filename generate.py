@@ -11,6 +11,7 @@ for i in range(TRAIN_SET_COUNT):
     op = a + (2*b) + (3*c)
     TRAIN_INPUT.append([a, b, c])
     TRAIN_OUTPUT.append(op)
+    
 from sklearn.linear_model import LinearRegression
 
 predictor = LinearRegression(n_jobs=-1)
