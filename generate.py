@@ -1,4 +1,5 @@
 from random import randint
+from json import dumps
 TRAIN_SET_LIMIT = 1000
 TRAIN_SET_COUNT = 100
 
