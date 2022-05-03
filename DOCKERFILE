@@ -1,16 +1,5 @@
-FROM python:3.8
 
-# set a directory for the app
-WORKDIR /app
+# syntax=docker/dockerfile:1
+FROM busybox
+CMD echo "Hello world! This is my first Docker image."
 
-# copy all the files to the container
-COPY . .
-
-# install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install pandas scikit-learn flask gunicorn
-# define the port number the container should expose
-EXPOSE 5000
-
-# run the command
-CMD ["python", "./app.py"]
