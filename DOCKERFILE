@@ -1,16 +1,14 @@
-FROM jupyter/scipy-notebook
-
-RUN mkdir my-model
-ENV MODEL_DIR=/home/jovyan/my-model
-ENV MODEL_FILE_LDA=clf_lda.joblib
-ENV MODEL_FILE_NN=clf_nn.joblib
-
-RUN pip install joblib
-
-COPY model.json ./model.json
-COPY input.data.json  ./input.data.json 
-
-COPY train.py ./train.py
-COPY app.py ./app.py
-
-RUN python3 train.py
+#Using the base image with python 3.7
+ FROM python:3.7
+ 
+ #Set our working directory as app
+ WORKDIR /app  #Installing python packages pandas, scikit-learn and gunicorn
+ RUN pip install pandas scikit-learn flask gunicorn
+ 
+ # Copy the models directory and server.py files
+ ADD ./models ./models
+ ADD app.py app.py
+ 
+ #Exposing the port 5000 from the container
+ EXPOSE 5000 #Starting the python application
+ CMD ["gunicorn", "--bind", "0.0.0.0:5000", "server:app"]
