@@ -1,14 +1,16 @@
-#Using the base image with python 3.7
- FROM python:3.7
- 
- #Set our working directory as app
- WORKDIR /app  #Installing python packages pandas, scikit-learn and gunicorn
- RUN pip install pandas scikit-learn flask gunicorn
- 
- # Copy the models directory and server.py files
- ADD ./models ./models
- ADD app.py app.py
- 
- #Exposing the port 5000 from the container
- EXPOSE 5000 #Starting the python application
- CMD ["gunicorn", "--bind", "0.0.0.0:5000", "server:app"]
+FROM python:3.8
+
+# set a directory for the app
+WORKDIR /app
+
+# copy all the files to the container
+COPY . .
+
+# install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install pandas scikit-learn flask gunicorn
+# define the port number the container should expose
+EXPOSE 5000
+
+# run the command
+CMD ["python", "./app.py"]
